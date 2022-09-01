@@ -1,18 +1,78 @@
-// Assignment 2: Permutation
+// Assignment 2: Permutation (in progress)
 // Group 10: Minh Thuc Tran, Mateen Yaqubi, and Sukhbir Singh
 #include <iostream>
 using namespace std;
 
+int NN, i, count = 0;
+int p[100], pi[100];  
+int dir[100];            
+
+void PrintPerm()
+{
+	int i;
+	for (i = 1; i <= NN; ++i)
+	{
+		cout << p[i];
+	}
+}
+
+void Move(int x, int d)
+{
+	int z;
+	cout << endl << endl;
+	z = p[pi[x] + d];
+	p[pi[x]] = z;
+	p[pi[x] + d] = x;
+	pi[z] = pi[x];
+	pi[x] = pi[x] + d;
+}
+
+void Perm(int n)
+{
+	int i;
+	if (n > NN)
+		PrintPerm();
+	else
+	{
+		Perm(n + 1);
+		for (i = 1; i <= n - 1; ++i)
+		{
+			Move(n, dir[n]);
+			Perm(n + 1);
+			cout << " ";
+		}
+		dir[n] = -dir[n];
+	}
+}
+
 int main()
 {
-	string userInput;
-	string userOutput;
+	cout << "Enter an integer n between 1 and 25: ";
+	cin >> NN;
+	cout << endl;
 
-	cout << "Enter an integer n between 1 and 25" << endl;
-	cin >> userInput;
-		
-		return 0;
+	if (NN < 1)
+	{
+		cout << "Error. Integer is either less than one or not a number" << endl;
+	}
+	else if (NN > 25)
+	{
+		cout << "Error. Integer is more than 25" << endl;
+	}
+	else
+	{
+		cout << "There are ";
+		for (i = 1; i <= NN; ++i)
+		{
+			dir[i] = -1; p[i] = i;
+			pi[i] = i;
+		}
+		Perm(1);
+	}
+	return 0;
 }
+
+
 
 Reference:
 https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
