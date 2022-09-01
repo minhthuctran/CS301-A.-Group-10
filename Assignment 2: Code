@@ -77,4 +77,5 @@ int main()
 Reference:
 https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
 https://www.geeksforgeeks.org/johnson-trotter-algorithm/
+https://www.oocities.org/permute_it/sjt_algo.html
 
