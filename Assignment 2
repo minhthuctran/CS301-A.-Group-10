@@ -1,1 +1,16 @@
-Testing Testing 123
+// Assignment 2: Permutation
+// Group 10: Minh Thuc Tran, Mateen Yaqubi, and Sukhbir Singh
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	string userInput;
+	string userOutput;
+
+	cout << "Enter an integer n between 1 and 25" << endl;
+	cin >> userInput;
+		
+		return 0;
+}
+
