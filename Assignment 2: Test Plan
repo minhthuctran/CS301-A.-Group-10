@@ -1,0 +1,6 @@
+Permutation: Test Plan
+Tran, Singh, and Yaqubi
+1. Open program
+2. User input a string of integers between 1 and 25.
+3. Program output number of permutation of user's input.
+4. Program list all permutations of user's input.
