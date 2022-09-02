@@ -5,23 +5,18 @@ using namespace std;
 
 int NN, i, count = 0;
 int counter = 1;
-int p[100], pi[100];
-int dir[100];
+int p[100], pi[100], dir[100];
 
-// Print perm function.
-void PrintPerm()
-{
-	for (int i = 1; i <= NN; ++i)
-	{
+void PrintPerm() {
+	for (int i = 1; i <= NN; ++i) {
 		cout << p[i];
 	}
 	cout << ", ";
 }
 
-// Move function
-void Move(int x, int d)
-{
+void Move(int x, int d) {
 	int z;
+
 	z = p[pi[x] + d];
 	p[pi[x]] = z;
 	p[pi[x] + d] = x;
@@ -29,55 +24,40 @@ void Move(int x, int d)
 	pi[x] = pi[x] + d;
 }
 
-// Perm function
-void Perm(int n)
-{
+void Perm(int n) {
 	int i;
+
 	if (n > NN)
 		PrintPerm();
-	else
-	{
+	else {
 		Perm(n + 1);
-		for (i = 1; i <= n - 1; ++i)
-		{
+		for (i = 1; i <= n - 1; ++i) {
 			Move(n, dir[n]);
 			Perm(n + 1);
-
 			counter++;
 		}
 		dir[n] = -dir[n];
 	}
 }
 
-// Main driver.
-int main()
-{
-	// This will ask user to input inteher n between 1 and 25.
+int main() {
 	cout << "Enter an integer n between 1 and 25: ";
 	cin >> NN;
 	cout << endl;
 
-	if (NN < 1)
-	{
-		// This will display an error to user if the user input value less than 1.
+	if (NN < 1) {
 		cout << "Error. Integer is either less than one or not a number" << endl;
 	}
-	else if (NN > 25)
-	{
-		// This will display an error to user if the user inputs value more than 25
+	else if (NN > 25) {
 		cout << "Error. Integer is more than 25" << endl;
 	}
-	else
-	{
-		// This will display the possible permutation.
-		cout << "Possible permutations: ";
-		for (i = 1; i <= NN; ++i)
-		{
+	else {
+		cout << "List of permutations: ";
+		for (i = 1; i <= NN; ++i) {
 			dir[i] = -1; p[i] = i;
 			pi[i] = i;
 		}
 		Perm(1);
-		// This will display the number of combunations.
 		cout << "\n\nNumber of combinations: " << counter << "\n";
 	}
 	return 0;
