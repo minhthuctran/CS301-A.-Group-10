@@ -4,3 +4,5 @@ Tran, Singh, and Yaqubi
 2. User input a string of integers between 1 and 25.
 3. Program output number of permutation of user's input.
 4. Program list all permutations of user's input.
+5. If the user inputs a value less than 1 then the program will through an error. "Error. Integer is either less than one or not a number".
+6. Also if the user inputs a value more than 25 the program will through an error. "Error. Integer is more than 25".
