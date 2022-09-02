@@ -4,22 +4,22 @@
 using namespace std;
 
 int NN, i, count = 0;
-int p[100], pi[100];  
-int dir[100];            
+int counter = 1;
+int p[100], pi[100];
+int dir[100];
 
 void PrintPerm()
 {
-	int i;
-	for (i = 1; i <= NN; ++i)
+	for (int i = 1; i <= NN; ++i)
 	{
 		cout << p[i];
 	}
+	cout << ", ";
 }
 
 void Move(int x, int d)
 {
 	int z;
-	cout << endl << endl;
 	z = p[pi[x] + d];
 	p[pi[x]] = z;
 	p[pi[x] + d] = x;
@@ -39,7 +39,8 @@ void Perm(int n)
 		{
 			Move(n, dir[n]);
 			Perm(n + 1);
-			cout << " ";
+
+			counter++;
 		}
 		dir[n] = -dir[n];
 	}
@@ -61,21 +62,19 @@ int main()
 	}
 	else
 	{
-		cout << "There are ";
+		cout << "Possible permutations: ";
 		for (i = 1; i <= NN; ++i)
 		{
 			dir[i] = -1; p[i] = i;
 			pi[i] = i;
 		}
 		Perm(1);
+		cout << "\n\nNumber of combinations: " << counter << "\n";
 	}
 	return 0;
 }
 
-
-
-Reference:
-https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
-https://www.geeksforgeeks.org/johnson-trotter-algorithm/
-https://www.oocities.org/permute_it/sjt_algo.html
-
+// Reference:
+// https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+// https://www.geeksforgeeks.org/johnson-trotter-algorithm/
+// https://www.oocities.org/permute_it/sjt_algo.html
