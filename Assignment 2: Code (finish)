@@ -1,0 +1,82 @@
+// Assignment 2: Permutation (in progress)
+// Group 10: Minh Thuc Tran, Mateen Yaqubi, and Sukhbir Singh
+#include <iostream>
+using namespace std;
+
+int userInput;
+int i;
+int count = 0;
+int counter = 1;
+int p[100];
+int pi[100];
+int dir[100];
+
+void printPerm() 
+{
+	for (int i = 1; i <= userInput; ++i)
+	{
+		cout << p[i];
+	}
+	cout << ", ";
+}
+
+void move(int x, int d)
+{
+	int z;
+
+	z = p[pi[x] + d];
+	p[pi[x]] = z;
+	p[pi[x] + d] = x;
+	pi[z] = pi[x];
+	pi[x] = pi[x] + d;
+}
+
+void perm(int n) 
+{
+	int i;
+
+	if (n > userInput)
+	{
+		printPerm();
+	}
+	else 
+	{
+		perm(n + 1);
+
+		for (i = 1; i <= n - 1; ++i)
+		{
+			move(n, dir[n]);
+			perm(n + 1);
+			counter++;
+		}
+		dir[n] = -dir[n];
+	}
+}
+
+int main() 
+{
+	cout << "Enter an integer n between 1 and 25: ";
+	cin >> userInput;
+	cout << endl;
+
+	if (userInput < 1)
+	{
+		cout << "Error. Integer is either less than one or not a number" << endl;
+	}
+	else if (userInput > 25)
+	{
+		cout << "Error. Integer is more than 25" << endl;
+	}
+	else 
+	{
+		cout << "List of permutations: ";
+		for (i = 1; i <= userInput; ++i)
+		{
+			dir[i] = -1; p[i] = i;
+			pi[i] = i;
+		}
+		perm(1);
+		cout << "\n\nNumber of combinations: " << counter << "\n";
+	}
+	return 0;
+}
